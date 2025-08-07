@@ -1,0 +1,29 @@
+studentsdb=# UPDATE Students SET email = 'alice.new@example.com' WHERE student_id = 2;
+UPDATE 1
+studentsdb=# select 8 from Students;
+ ?column? 
+----------
+        8
+        8
+        8
+        8
+        8
+        8
+        8
+        8
+        8
+        8
+(10 rows)
+
+studentsdb=# UPDATE Courses SET course_name = 'Advanced Physics' WHERE course_id = 3;
+UPDATE 1
+studentsdb=# select * from Courses;
+ course_id |    course_name     | credits 
+-----------+--------------------+---------
+         1 | Mathematics        |       4
+         2 | Computer Science   |       3
+         4 | Chemistry          |       4
+         5 | English Literature |       2
+         3 | Advanced Physics   |       4
+(5 rows)
+
