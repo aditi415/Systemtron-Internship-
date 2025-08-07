@@ -1,0 +1,5 @@
+studentsdb=# DELETE FROM Students WHERE student_id = 3;
+DELETE 1
+  
+studentsdb=# DELETE FROM Courses WHERE course_name = 'Mathematics';
+DELETE 1
