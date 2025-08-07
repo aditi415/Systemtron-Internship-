@@ -1,24 +1,45 @@
-SELECT * FROM Students;
+studentsdb=# select * from Students WHERE last_name='Smith';
+ student_id | first_name | last_name |          email          | date_of_birth 
+------------+------------+-----------+-------------------------+---------------
+          2 | Alice      | Smith     | alice.smith@example.com | 2001-11-23
+(1 row)
 
-          //SELECT with WHERE
+studentsdb=# SELECT * FROM Students ORDER BY date_of_birth DESC;
 
-SELECT * FROM Students WHERE last_name = 'Smith';
+studentsdb=# select * from Students WHERE last_name='Smith';
+ student_id | first_name | last_name |          email          | date_of_birth 
+------------+------------+-----------+-------------------------+---------------
+          2 | Alice      | Smith     | alice.smith@example.com | 2001-11-23
+(1 row)
 
-                   SELECT with ORDER BY
+studentsdb=# SELECT * FROM Students ORDER BY date_of_birth DESC;
 
-SELECT * FROM Students ORDER BY date_of_birth DESC;
+studentsdb=# select s.first_name, s.last_name, c.course_name FROM Enrollments e JOIN Students s ON e.student_id = s.student_id JOIN Courses c ON e.course_id = c.course_id;
+ first_name | last_name |    course_name     
+------------+-----------+--------------------
+ John       | Doe       | Mathematics
+ John       | Doe       | Computer Science
+ Alice      | Smith     | Physics
+ Bob        | Johnson   | Mathematics
+ Emily      | Clark     | Chemistry
+ Michael    | Brown     | Computer Science
+ Linda      | Taylor    | English Literature
+ David      | Anderson  | Physics
+ Sophia     | Martinez  | Chemistry
+ James      | Lee       | Mathematics
+ Olivia     | Walker    | Computer Science
+ Alice      | Smith     | English Literature
+ Bob        | Johnson   | Computer Science
+ Emily      | Clark     | Mathematics
+(14 rows)
 
-                    SELECT with JOIN
+studentsdb=# SELECT c.course_name, COUNT(e.student_id) AS enrolled_students FROM Enrollments e JOIN Courses c ON e.course_id = c.course_id GROUP BY c.course_name ORDER BY enrolled_students DESC;
+    course_name     | enrolled_students 
+--------------------+-------------------
+ Computer Science   |                 4
+ Mathematics        |                 4
+ Chemistry          |                 2
+ English Literature |                 2
+ Physics            |                 2
+(5 rows)
 
-SELECT s.first_name, s.last_name, c.course_name
-FROM Enrollments e
-JOIN Students s ON e.student_id = s.student_id
-JOIN Courses c ON e.course_id = c.course_id;
-
-                    SELECT with GROUP BY
-
-SELECT c.course_name, COUNT(e.student_id) AS enrolled_students
-FROM Enrollments e
-JOIN Courses c ON e.course_id = c.course_id
-GROUP BY c.course_name
-ORDER BY enrolled_students DESC;
