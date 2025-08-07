@@ -1,0 +1,24 @@
+SELECT * FROM Students;
+
+          //SELECT with WHERE
+
+SELECT * FROM Students WHERE last_name = 'Smith';
+
+                   SELECT with ORDER BY
+
+SELECT * FROM Students ORDER BY date_of_birth DESC;
+
+                    SELECT with JOIN
+
+SELECT s.first_name, s.last_name, c.course_name
+FROM Enrollments e
+JOIN Students s ON e.student_id = s.student_id
+JOIN Courses c ON e.course_id = c.course_id;
+
+                    SELECT with GROUP BY
+
+SELECT c.course_name, COUNT(e.student_id) AS enrolled_students
+FROM Enrollments e
+JOIN Courses c ON e.course_id = c.course_id
+GROUP BY c.course_name
+ORDER BY enrolled_students DESC;
