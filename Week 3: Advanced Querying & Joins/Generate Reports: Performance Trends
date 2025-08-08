@@ -1,0 +1,25 @@
+employee_performance_db=# SELECT DATE_TRUNC('month', review_date) AS month,AVG(score) AS avg_score FROM PerformanceReviews GROUP BY month ORDER BY month;
+           month           |     avg_score      
+---------------------------+--------------------
+ 2023-01-01 00:00:00+05:30 | 9.0000000000000000
+ 2023-05-01 00:00:00+05:30 | 6.0000000000000000
+ 2024-01-01 00:00:00+05:30 | 8.5000000000000000
+ 2024-02-01 00:00:00+05:30 | 7.0000000000000000
+ 2024-03-01 00:00:00+05:30 | 8.0000000000000000
+ 2024-04-01 00:00:00+05:30 | 8.0000000000000000
+ 2024-05-01 00:00:00+05:30 | 6.0000000000000000
+ 2024-06-01 00:00:00+05:30 | 8.0000000000000000
+ 2024-07-01 00:00:00+05:30 | 7.0000000000000000
+ 2024-08-01 00:00:00+05:30 | 9.0000000000000000
+(10 rows)
+
+employee_performance_db=# SELECT e.name, ROUND(AVG(p.score), 2) AS average_score FROM Employees e JOIN PerformanceReviews p ON e.employee_id = p.employee_id GROUP BY e.name HAVING AVG(p.score) >= 8 ORDER BY average_score DESC;
+     name      | average_score 
+---------------+---------------
+ Frank Castle  |          9.00
+ Karen Gillan  |          9.00
+ Alice Johnson |          8.67
+ Grace Hopper  |          8.00
+ Eve Adams     |          8.00
+ Jack Ma       |          8.00
+(6 rows)
