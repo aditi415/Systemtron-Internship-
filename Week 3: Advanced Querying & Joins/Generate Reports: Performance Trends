@@ -1,3 +1,5 @@
+                          Monthly Average Score Trend
+                     
 employee_performance_db=# SELECT DATE_TRUNC('month', review_date) AS month,AVG(score) AS avg_score FROM PerformanceReviews GROUP BY month ORDER BY month;
            month           |     avg_score      
 ---------------------------+--------------------
@@ -12,6 +14,9 @@ employee_performance_db=# SELECT DATE_TRUNC('month', review_date) AS month,AVG(s
  2024-07-01 00:00:00+05:30 | 7.0000000000000000
  2024-08-01 00:00:00+05:30 | 9.0000000000000000
 (10 rows)
+
+
+              Top Performers (Average Score ≥ 8)
 
 employee_performance_db=# SELECT e.name, ROUND(AVG(p.score), 2) AS average_score FROM Employees e JOIN PerformanceReviews p ON e.employee_id = p.employee_id GROUP BY e.name HAVING AVG(p.score) >= 8 ORDER BY average_score DESC;
      name      | average_score 
